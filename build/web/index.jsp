@@ -25,7 +25,7 @@
 				<a class="loginLink1"href="newRegister.html" style="color: #1da1f2">Sign up now !</a>
 			</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br>
-			<div class="footer-1">
+			<div class="footer1">
 					<p class="kucuk">&nbsp;Tüm hakları saklıdır.</p>	
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 			</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br>
 			
-			<div class="footer-2">
+			<div class="footer2">
 					<p class="yazi">&copy 2018 Kaan Özbudak&nbsp;</p>
 			</div>
 		</div>
