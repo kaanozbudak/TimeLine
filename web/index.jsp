@@ -22,7 +22,7 @@
 				<h1></h1>
 				<h3>New to TimeLine ?</h3>
 				<br><br>
-				<a class="loginLink1"href="newRegister.html" style="color: #1da1f2">Sign up now !</a>
+				<a class="loginLink1"href="newRegister.jsp" style="color: #1da1f2">Sign up now !</a>
 			</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br>
 			<div class="footer1">
@@ -47,7 +47,7 @@
 				<input class="input" type="password" name="password" required>
 				</form>
 				<br><br>
-				<a class="loginLink2" href="login.html" style="color:#fff">Login now !</a>
+				<a class="loginLink2" href="login.jsp" style="color:#fff">Login now !</a>
 			</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br>
 			
