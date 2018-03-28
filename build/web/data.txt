@@ -1,22 +1,4 @@
-Name: sad Password:asdas
-Name: asdas Password:asdasd
-Name: wqewq Password:wqeqwe
-Name: asda| Password:asdas
-Name: wqdqwd| Password:qweqw
-Name: wqdqwd| Password:wqqweqweqweqweqweqweqw
-Name: asdasd| Password:asdasd
-Name: kaanozbudak| Password:rosekaan1
-Name: eraysurmeli| Password:123456
-Name: eraysurmeli| Password:78890
-Name: kaanozbudak| Password:75321
-Name: qdwqdq| Password:qweqw
-Name: asdasd| Password:asdasd
-Name: kaanozbudak| Password:rosekaan1
-Name: kaanozbudak| Password:kaanozbudak
-
-Name: hbhbjk| Password:jhgvhjvbhj
-Name: lÃ¶Ä?Å?lÄ?opkokpÄ?o| Password:bkjnbjnj
-Name: eraysurmeli| Password:Mehmet362464
-Name: kadirmelihcan| Password:123456
-Name: kaanozbudakkkk| Password:kaanozbudakkk
-Name: eraysurmeli| Password:hahahah
+adem|123456
+melih|12345
+kaan|123456
+anil|456789

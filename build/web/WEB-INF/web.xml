@@ -12,6 +12,23 @@
         <servlet-name>saveNew-servlet</servlet-name>
         <url-pattern>/saveNew</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Login-servlet</servlet-name>
+        <servlet-class>personal.Login</servlet-class>
+        <init-param>
+			<param-name>emailFileName</param-name>
+			<param-value>C:\Users\Dragon\Documents\NetBeansProjects\TimeLine\build\web\data.txt</param-value>
+	</init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login-servlet</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
     <session-config>
         <session-timeout>
             30

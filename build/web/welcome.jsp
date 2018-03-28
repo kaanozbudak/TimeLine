@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : 22.Mar.2018, 21:22:24
+    Document   : welcome
+    Created on : 28.Mar.2018, 13:00:15
     Author     : Dragon
 --%>
 
@@ -12,6 +12,6 @@
     <title>JSP Page</title>
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <h1>success</h1>
 </body>
 </html>

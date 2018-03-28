@@ -4,6 +4,7 @@
     Author     : Dragon
 --%>
 
+<%@page import="java.io.FileInputStream"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -35,19 +36,18 @@
 			<div class="center2">
 				<h1>Join TimeLine</h1>
 			
-				<form method="post" action="AddToUser">
-		
+				<form method="post" action="Login">
 				<label for="userName">User Name  &nbsp;:&nbsp; </label>
 				<input class="input" type="text" name="userName" required>
-					
+
 				<p></p>
 
 				<label for="password">Password&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</label>
 					
 				<input class="input" type="password" name="password" required>
+                                    <br><br>
+                                <input style="color:blue" type="submit" value="Login now !">  
 				</form>
-				<br><br>
-				<a class="loginLink2" href="login.jsp" style="color:#fff">Login now !</a>
 			</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br>
 			
