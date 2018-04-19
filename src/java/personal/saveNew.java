@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import data.UserIO;
+
 
 public class saveNew extends HttpServlet 
 {
@@ -14,31 +14,29 @@ public class saveNew extends HttpServlet
     {
         String message="Some fields are empty please fill.";
         String url="";
-        String userName=request.getParameter("userName");
+        
+        String firstName=request.getParameter("firstName");
+        String lastName=request.getParameter("lastName");
+        String email=request.getParameter("email");
         String password=request.getParameter("password");
-        User user = new User(userName,password);
+       
+        System.out.println(firstName+""+lastName+""+email+""+password);
+
+        User user = new User(firstName,lastName,email,password);
         
         request.setAttribute("user", user);
         
-        if(userName.equals("") || password.equals(""))
+        if(email.equals("") || password.equals("") || firstName.equals("") || lastName.equals(""))
         {
             request.setAttribute("msg", message);
-            url="/form.jsp";
-            System.out.println("bombos");
+            System.out.println("aynimail");
+            url="/newRegister.jsp";
         }
         else
-        {
-            UserIO usrWrite=new UserIO();
-            ServletConfig scg = getServletConfig();
-            
-            String path= scg.getInitParameter("emailFileName");
-               
-            //ServletContext sc = getServletContext();
-            //String path = sc.getRealPath("C:\\Users\\Dragon\\Documents\\NetBeansProjects\\TimeLine\\build\\web\\data.txt");     
-      
-            usrWrite.write(user,path);
+        {   
+            DB data = new DB();
+            data.registerUser(user);
             url="/reply.jsp";
-            System.out.println("dolu");
         }
         RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
         rd.forward(request, response);

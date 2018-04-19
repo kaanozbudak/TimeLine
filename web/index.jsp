@@ -12,7 +12,7 @@
 <head>
 	<title>TimeLine</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="mainStyle.css">
 </head>
 <body>
 	<section id="leftOne">
@@ -27,7 +27,7 @@
 			</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br>
 			<div class="footer1">
-					<p class="kucuk">&nbsp;Tüm hakları saklıdır.</p>	
+                                    <p class="kucuk">&nbsp;Tüm hakları saklıdır.</p>	
 			</div>
 		</div>
 	</section>
@@ -37,8 +37,8 @@
 				<h1>Join TimeLine</h1>
 			
 				<form method="post" action="Login">
-				<label for="userName">User Name  &nbsp;:&nbsp; </label>
-				<input class="input" type="text" name="userName" required>
+				<label for="email">E Mail: &nbsp;:&nbsp; </label>
+				<input class="input" type="text" name="email" required>
 
 				<p></p>
 

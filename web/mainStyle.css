@@ -1,0 +1,111 @@
+.leftContainer
+{	
+	height: 100%;
+	width: 50%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	overflow-x: hidden;
+	padding-top: 20px;
+	left: 0;
+  	background-color: #1da1f2;
+}
+.center
+{	
+	text-align: center;
+	color: white;
+	padding-top: 22%;
+	border: none;
+}
+.img1
+{
+	width: 71%;
+}
+.loginLink1
+{
+	text-decoration: none;
+	background-color: #fff;
+	width: 100px;
+        border: 2px solid #fff;
+        padding-left: 10px;
+	padding-right:10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+        margin: 100px;
+	font-size: 20px;
+}
+.loginLink11
+{
+	text-decoration: none;
+	background-color: #1da1f2;
+	width: 100px;
+        border: 2px solid #fff;
+        padding-left: 10px;
+	padding-right:10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+        margin: 100px;
+	font-size: 20px;
+}
+.rightContainer
+{	
+	height: 100%;
+  	width: 50%;
+  	position: fixed;
+  	z-index: 1;
+  	top: 0;
+  	overflow-x: hidden;
+	right: 0;
+  	background-color: white;
+}
+.center2
+{
+	text-align: center;
+	color: #1da1f2;
+	padding-top: 37%;
+	
+	
+}
+.input
+{
+	background-color: #ffff99;
+}
+.loginLink2
+{	
+	text-decoration: none;
+	background-color: #1da1f2;
+	width: 100px;
+    border: 2px solid #1da1f2;
+    padding-left: 10px;
+	padding-right:10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+    margin: 100px;
+	font-size: 20px;
+}
+.footer1 
+{       
+        margin-top: 60px;
+	padding-top:10px;
+	background-color: black;
+	padding-bottom: 10px;
+}
+.footer2 
+{   
+        margin-top: 89px;
+	padding-top:9px;
+	background-color: black;
+	padding-bottom: 10px;
+}
+.yazi
+{   
+        color: white;
+	font-size: 20px;
+	margin-left:77%;
+}
+.kucuk 
+{	
+        color: white;
+	font-size: 20px;
+	margin-right:78%;
+}
