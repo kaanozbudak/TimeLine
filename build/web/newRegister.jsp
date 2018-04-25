@@ -16,6 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--//webfonts-->
 </head>
 <body>
+    <h1 style="text-align: center; font-size: 35px;color: white;padding-top: 5%;">Welcome new User</h1>
 <div class="main">
     <div class="social-icons">
         <div class="col_1_of_f span_1_of_f"><a href="#">

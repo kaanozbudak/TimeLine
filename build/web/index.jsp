@@ -38,15 +38,15 @@
 			
 				<form method="post" action="Login">
 				<label for="email">E Mail: &nbsp;:&nbsp; </label>
-				<input class="input" type="text" name="email" required>
-
+				<input class="input" type="text" name="email"  required>
+ 
 				<p></p>
 
 				<label for="password">Password&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</label>
 					
 				<input class="input" type="password" name="password" required>
                                     <br><br>
-                                <input style="color:blue" type="submit" value="Login now !">  
+                                <input style="color:#1da1f2; font-size: 30px;" type="submit" value="Login now !">  
 				</form>
 			</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br>

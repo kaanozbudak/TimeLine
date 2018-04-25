@@ -62,9 +62,9 @@
 {
 	text-align: center;
 	color: #1da1f2;
-	padding-top: 37%;
-	
-	
+        line-height: 100%;  
+        font-size: 35px;
+        padding-top: 27%;
 }
 .input
 {
@@ -85,23 +85,29 @@
 }
 .footer1 
 {       
-        margin-top: 60px;
-	padding-top:10px;
-	background-color: black;
-	padding-bottom: 10px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
 }
 .footer2 
 {   
-        margin-top: 89px;
-	padding-top:9px;
-	background-color: black;
-	padding-bottom: 10px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
 }
 .yazi
 {   
         color: white;
-	font-size: 20px;
-	margin-left:77%;
+	font-size: 30px;
+            
 }
 .kucuk 
 {	

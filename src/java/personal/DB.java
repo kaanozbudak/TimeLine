@@ -67,6 +67,21 @@ public class DB
        }
        return false;
    }
+   public String getFirstName(User user)
+   {    
+       try
+       {
+            startConnection();
+            String sqlStatement = String.format("Select * from timetable where email='%s' and password='%s';",user.getEmail(),user.getPassword());
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sqlStatement);
+       }
+       catch( Exception e ) {}
+       
+       String firstName ="";
+
+       return firstName;
+   }
    private void close()
     {
         try 
