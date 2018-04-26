@@ -1,4 +1,5 @@
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,34 +10,31 @@
         <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
+    <%@page import="personal.DB"%>
     <%
         String email = (String) session.getAttribute("email");
+        String nickName = email;
+        String fullName = (String) session.getAttribute("nickName");
+        DB db = new DB();
+        int counter = db.countTweet();
+        ArrayList tweet = db.getTweet();
     %>
+   
    
 <div class="navbar navbar-default navbar-static-top">
 	<div class="container">
 		<div class="navbar-collapse navbar-collapse-1 collapse" aria-expanded="true">
 			<ul class="nav navbar-nav">
 				<li class="active">
-					<a href="#fake"><span class="glyphicon glyphicon-home"></span> Home</a>
+                                    <a href="welcome.jsp"><span class="glyphicon glyphicon-home"></span></a>
 				</li>
 				<li>
-					<a href="#fake"><span class="glyphicon glyphicon-bell"></span> Notifications</a>
+					<a href="welcome.jsp"><span class="glyphicon glyphicon-bell"></span> Notifications</a>
 				</li>
 				<li>
-					<a href="#fake"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
+					<a href="welcome.jsp"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
 				</li>
 			</ul>
-			<div class="navbar-form navbar-right">
-				<div class="form-group has-feedback">
-					<input type="text" class="form-control-nav" id="search" aria-describedby="search1">
-					<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
-				</div>
-
-				<button class="btn btn-primary" type="submit" aria-label="Left Align">
-					<span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span> Tweet
-				</button>
-			</div>
 		</div>
 	</div>
 </div>
@@ -46,12 +44,12 @@
 		<div class="col-sm-3">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<a href="#"><img class="img-responsive" alt="" src="http://placehold.it/800x500"></a>
+					<a href="#"><img class="img-responsive" alt="" src="800500.jpg"></a>
 					<div class="row">
 						<div class="col-xs-3">
 							<h5>
 								<small>TWEETS</small>
-								<a href="#">1,545</a>
+								<a href="#"><%=counter%></a>
 							</h5>
 						</div>
 						<div class="col-xs-4">
@@ -63,7 +61,7 @@
 						<div class="col-xs-5">
 							<h5>
 								<small>FOLLOWERS</small>
-								<a href="#">153</a>
+								<a href="#">15345</a>
 							</h5>
 						</div>
 					</div>
@@ -73,20 +71,20 @@
 			<div class="panel panel-default panel-custom">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						Trends
-						<small><a href="#">ciao</a></small>
+                                            <b><%=fullName%></b>
 					</h3>
+                                    <br>
 				</div>
-
+                            
 				<div class="panel-body">
 					<ul class="list-unstyled">
-						<li><a href="#">#Cras justo odio</a></li>
-						<li><a href="#">#Dapibus ac facilisis in</a></li>
-						<li><a href="#">#Morbi leo risus</a></li>
-						<li><a href="#">#Porta ac consectetur ac</a></li>
-						<li><a href="#">#Vestibulum at eros</a></li>
-						<li><a href="#">#Vestibulum at eros</a></li>
-						<li><a href="#">#Vestibulum at eros</a></li>
+						<li><a href="#">#Istanbul</a></li>
+						<li><a href="#">#Aydin</a></li>
+						<li><a href="#">#University</a></li>
+						<li><a href="#">#ComputerEngineer</a></li>
+						<li><a href="#">#SoftwareEngineer</a></li>
+						<li><a href="#">#ComputerScience</a></li>
+						<li><a href="#">#JAVA</a></li>
 					</ul>
 				</div>
 			</div>
@@ -95,99 +93,39 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<div class="media">
-						<a class="media-left" href="#fake">
-							<img alt="" class="media-object img-rounded" src="http://placehold.it/35x35">
-						</a>
 						<div class="media-body">
 							<div class="form-group has-feedback">
 								<label class="control-label sr-only" for="inputSuccess5">Hidden label</label>
-								<input type="text" class="form-control" id="search2" aria-describedby="search">
-								<span class="glyphicon glyphicon-camera form-control-feedback" aria-hidden="true"></span>
-								<span id="search2" class="sr-only">(success)</span>
+                                                                
+                                                                <form method="post" action="SendTweet" >
+                                                                <input type="text" style="height:100px;" size="250" name="tweet" class="form-control" id="search2" aria-describedby="search">
+                                                                <br>
+                                                                <center><button class="btn btn-primary" type="submit" aria-label="Left Align"> 
+                                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>        Tweet 
+                                                                </button></center>
+                                                                </form>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="panel-body">
-					<div class="media">
-						<a class="media-left" href="#fake">
-							<img alt="" class="media-object img-rounded" src="http://placehold.it/64x64">
-						</a>
+					
+                                    <%
+                                        for(int i=0;i<counter;i++)
+                                        {
+                                                db.startConnection();
+                                                String matchEmail = db.matchEmail((String)tweet.get(i));
+                                    %>
+                                        <div class="media">
 						<div class="media-body">
-							<h4 class="media-heading">Media heading</h4>
-							<p>Dolorem aspernatur rerum, iure? Culpa iste aperiam sequi, fuga, quasi rerum, eum, quo natus tenetur officia placeat.</p>
-							<ul class="nav nav-pills nav-pills-custom">
-								<li><a href="#"><span class="glyphicon glyphicon-share-alt"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-retweet"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-option-horizontal"></span></a></li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="media">
-						<a class="media-left" href="#fake">
-							<img alt="" class="media-object img-rounded" src="http://placehold.it/64x64">
-						</a>
-						<div class="media-body">
-							<h4 class="media-heading">Media heading</h4>
-							<p>Dolorem aspernatur rerum, iure? Culpa iste aperiam sequi, fuga, quasi rerum, eum, quo natus tenetur officia placeat.</p>
-							<ul class="nav nav-pills nav-pills-custom">
-								<li><a href="#"><span class="glyphicon glyphicon-share-alt"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-retweet"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-option-horizontal"></span></a></li>
-							</ul>
+                                                    <h4 class="media-heading"><img src="yumurta.png" height="32" width="46"></img> <b><%=matchEmail%></b></h4>
+							<p><%=(String)tweet.get(i)%></p>
 						</div>
 
-					</div>
-					<div class="media">
-						<a class="media-left" href="#fake">
-							<img alt="" class="media-object img-rounded" src="http://placehold.it/64x64">
-						</a>
-						<div class="media-body">
-							<h4 class="media-heading">Media heading</h4>
-							<p>Dolorem aspernatur rerum, iure? Culpa iste aperiam sequi, fuga, quasi rerum, eum, quo natus tenetur officia placeat.</p>
-							<ul class="nav nav-pills nav-pills-custom">
-								<li><a href="#"><span class="glyphicon glyphicon-share-alt"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-retweet"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-option-horizontal"></span></a></li>
-							</ul>
-						</div>
-
-					</div>
-					<div class="media">
-						<a class="media-left" href="#fake">
-							<img alt="" class="media-object img-rounded" src="http://placehold.it/64x64">
-						</a>
-						<div class="media-body">
-							<h4 class="media-heading">Media heading</h4>
-							<p>Dolorem aspernatur rerum, iure? Culpa iste aperiam sequi, fuga, quasi rerum, eum, quo natus tenetur officia placeat.</p>
-							<ul class="nav nav-pills nav-pills-custom">
-								<li><a href="#"><span class="glyphicon glyphicon-share-alt"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-retweet"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-option-horizontal"></span></a></li>
-							</ul>
-						</div>
-
-					</div>
-					<div class="media">
-						<a class="media-left" href="#fake">
-							<img alt="" class="media-object img-rounded" src="http://placehold.it/64x64">
-						</a>
-						<div class="media-body">
-							<h4 class="media-heading">Media heading</h4>
-							<p>Dolorem aspernatur rerum, iure? Culpa iste aperiam sequi, fuga, quasi rerum, eum, quo natus tenetur officia placeat.</p>
-							<ul class="nav nav-pills nav-pills-custom">
-								<li><a href="#"><span class="glyphicon glyphicon-share-alt"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-retweet"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-option-horizontal"></span></a></li>
-							</ul>
-						</div>
-					</div>
+					</div>  
+                                    <%
+                                        }
+                                    %>
 
 				</div>
 			</div>
@@ -197,16 +135,7 @@
 			<br>
 
 
-			<div class="panel panel-default">
-				<div class="panel-heading">Prova</div>
-				<div class="panel-body">
-					<ul class="nav nav-pills">
-						<li role="presentation" class="active"><a href="#">Home</a></li>
-						<li role="presentation"><a href="#">Profile</a></li>
-						<li role="presentation"><a href="#">Messages</a></li>
-					</ul>
-				</div>
-			</div>
+			
 		</div>
 
 		<div class="col-sm-3">
@@ -216,14 +145,15 @@
 						Who to follow
 						<small><a href="#">Refresh</a> ● <a href="#">View all</a></small>
 					</h3>
+                                     <br>
 				</div>
 				<div class="panel-body">
 					<div class="media">
 						<div class="media-left">
-							<img src="http://placehold.it/32x32" alt="" class="media-object img-rounded">
+							<img src="yumurta.png" alt="" height="45" width="60" class="media-object img-rounded">
 						</div>
 						<div class="media-body">
-							<h4 class="media-heading">Nome e cognome</h4>
+							<h4 class="media-heading">Adem Özyavas</h4>
 							<a href="#" class="btn btn-default btn-xs">
 								+
 								<span class="glyphicon glyphicon-user"></span>
@@ -233,10 +163,10 @@
 					</div>
 					<div class="media">
 						<div class="media-left">
-							<img src="http://placehold.it/32x32" alt="" class="media-object img-rounded">
+							<img src="tanercevik.jpg" height="60" width="60" alt="" class="media-object img-rounded">
 						</div>
 						<div class="media-body">
-							<h4 class="media-heading">Nome e cognome</h4>
+                                                    <h4 class="media-heading">Taner Çevik</h4>
 							<a href="#" class="btn btn-default btn-xs">
 								+
 								<span class="glyphicon glyphicon-user"></span>
@@ -246,10 +176,10 @@
 					</div>
 					<div class="media">
 						<div class="media-left">
-							<img src="http://placehold.it/32x32" alt="" class="media-object img-rounded">
+							<img src="aligunes.jpg" height="64" width="70" alt="" class="media-object img-rounded">
 						</div>
 						<div class="media-body">
-							<h4 class="media-heading">Nome e cognome</h4>
+							<h4 class="media-heading">Ali Güneş</h4>
 							<a href="#" class="btn btn-default btn-xs">
 								+
 								<span class="glyphicon glyphicon-user"></span>
@@ -267,22 +197,22 @@
 			</div>
 			<div class="well well-sm">
 				<ul class="list-inline">
-					<li>© 2018 TimeLine</li>
+					<li>© 2018 TimeLine KAAN OZBUDAK</li>
 					<li><a href="https://www.kaanozbudak.com">About</a></li>
-					<li><a href="#">Help</a></li>
-					<li><a href="#">Terms</a></li>
-					<li><a href="#">Privacy</a></li>
-					<li><a href="#">Cookies</a></li>
-					<li><a href="#">Ads info</a></li>
-					<li><a href="#">Brand</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Status</a></li>
-					<li><a href="#">Apps</a></li>
-					<li><a href="#">Jobs</a></li>
-					<li><a href="#">Advertise</a></li>
-					<li><a href="#">Businesses</a></li>
-					<li><a href="#">Media</a></li>
-					<li><a href="#">Developers</a></li>
+					<li><a href="https://www.kaanozbudak.com">Help</a></li>
+					<li><a href="https://www.kaanozbudak.com">Terms</a></li>
+					<li><a href="https://www.kaanozbudak.com">Privacy</a></li>
+					<li><a href="https://www.kaanozbudak.com">Cookies</a></li>
+					<li><a href="https://www.kaanozbudak.com">Ads info</a></li>
+					<li><a href="https://www.kaanozbudak.com">Brand</a></li>
+					<li><a href="https://www.kaanozbudak.com">Blog</a></li>
+					<li><a href="https://www.kaanozbudak.com">Status</a></li>
+					<li><a href="https://www.kaanozbudak.com">Apps</a></li>
+					<li><a href="https://www.kaanozbudak.com">Jobs</a></li>
+					<li><a href="https://www.kaanozbudak.com">Advertise</a></li>
+					<li><a href="https://www.kaanozbudak.com">Businesses</a></li>
+					<li><a href="https://www.kaanozbudak.com">Media</a></li>
+					<li><a href="https://www.kaanozbudak.com">Developers</a></li>
 				</ul>
 			</div>
 		</div>

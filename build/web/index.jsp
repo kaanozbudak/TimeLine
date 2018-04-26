@@ -36,7 +36,7 @@
 			<div class="center2">
 				<h1>Join TimeLine</h1>
 			
-				<form method="post" action="Login">
+				<form method="post" action="Login1">
 				<label for="email">E Mail: &nbsp;:&nbsp; </label>
 				<input class="input" type="text" name="email"  required>
  

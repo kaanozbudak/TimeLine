@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
-public class Login extends HttpServlet 
+public class Login1 extends HttpServlet 
 {   
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -21,11 +21,12 @@ public class Login extends HttpServlet
               User user = new User(email,password);
               String url ="";
               DB data = new DB();
+              
               if(data.checkUser(user))
               {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("email", email);
-                
+                session.setAttribute("nickName", data.getFirstName(user)+data.getLastName(user));
                 url="/welcome.jsp";
               }
               else

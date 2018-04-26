@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>saveNew-servlet</servlet-name>
+        <servlet-name>saveNew</servlet-name>
         <servlet-class>personal.saveNew</servlet-class>
-        <init-param>
-			<param-name>emailFileName</param-name>
-			<param-value>C:\Users\Dragon\Documents\NetBeansProjects\TimeLine\build\web\data.txt</param-value>
-	</init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>SendTweet</servlet-name>
+        <servlet-class>personal.SendTweet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Login1</servlet-name>
+        <servlet-class>personal.Login1</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>saveNew-servlet</servlet-name>
+        <servlet-name>saveNew</servlet-name>
         <url-pattern>/saveNew</url-pattern>
     </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>Login-servlet</servlet-name>
-        <servlet-class>personal.Login</servlet-class>
-        <init-param>
-			<param-name>emailFileName</param-name>
-			<param-value>C:\Users\Dragon\Documents\NetBeansProjects\TimeLine\build\web\data.txt</param-value>
-	</init-param>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>Login-servlet</servlet-name>
-        <url-pattern>/Login</url-pattern>
+        <servlet-name>SendTweet</servlet-name>
+        <url-pattern>/SendTweet</url-pattern>
     </servlet-mapping>
-    
-    
-    
-    
+    <servlet-mapping>
+        <servlet-name>Login1</servlet-name>
+        <url-pattern>/Login1</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
