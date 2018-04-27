@@ -16,8 +16,10 @@
         String nickName = email;
         String fullName = (String) session.getAttribute("nickName");
         DB db = new DB();
+        db.startConnection();
         int counter = db.countTweet();
         ArrayList tweet = db.getTweet();
+        
     %>
    
    
@@ -26,14 +28,19 @@
 		<div class="navbar-collapse navbar-collapse-1 collapse" aria-expanded="true">
 			<ul class="nav navbar-nav">
 				<li class="active">
-                                    <a href="welcome.jsp"><span class="glyphicon glyphicon-home"></span></a>
+                                    <a href="welcome.jsp"><span class="glyphicon glyphicon-home">  Home</span></a>
 				</li>
 				<li>
 					<a href="welcome.jsp"><span class="glyphicon glyphicon-bell"></span> Notifications</a>
 				</li>
 				<li>
-					<a href="welcome.jsp"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
+                                    <a href="welcome.jsp"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
 				</li>
+                            &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp;
+                                         &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp;
+                                <li>
+                                    <a href="welcome.jsp"><span class="glyphicon glyphicon-home"> TimeLine</span></a>
+                                </li>
 			</ul>
 		</div>
 	</div>
@@ -49,19 +56,19 @@
 						<div class="col-xs-3">
 							<h5>
 								<small>TWEETS</small>
-								<a href="#"><%=counter%></a>
+								<a href="welcome.jsp"><%=counter%></a>
 							</h5>
 						</div>
 						<div class="col-xs-4">
 							<h5>
 								<small>FOLLOWING</small>
-								<a href="#">251</a>
+								<a href="welcome.jsp">251</a>
 							</h5>
 						</div>
 						<div class="col-xs-5">
 							<h5>
 								<small>FOLLOWERS</small>
-								<a href="#">15345</a>
+								<a href="welcome.jsp">15345</a>
 							</h5>
 						</div>
 					</div>
@@ -71,20 +78,20 @@
 			<div class="panel panel-default panel-custom">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-                                            <b><%=fullName%></b>
+                                            <b>Name Surname:<%=fullName%></b>
 					</h3>
                                     <br>
 				</div>
                             
 				<div class="panel-body">
 					<ul class="list-unstyled">
-						<li><a href="#">#Istanbul</a></li>
-						<li><a href="#">#Aydin</a></li>
-						<li><a href="#">#University</a></li>
-						<li><a href="#">#ComputerEngineer</a></li>
-						<li><a href="#">#SoftwareEngineer</a></li>
-						<li><a href="#">#ComputerScience</a></li>
-						<li><a href="#">#JAVA</a></li>
+						<li><a href="welcome.jsp">#Istanbul</a></li>
+						<li><a href="welcome.jsp">#Aydin</a></li>
+						<li><a href="welcome.jsp">#University</a></li>
+						<li><a href="welcome.jsp">#ComputerEngineer</a></li>
+						<li><a href="welcome.jsp">#SoftwareEngineer</a></li>
+						<li><a href="welcome.jsp">#ComputerScience</a></li>
+						<li><a href="welcome.jsp">#JAVA</a></li>
 					</ul>
 				</div>
 			</div>
@@ -111,14 +118,13 @@
 				<div class="panel-body">
 					
                                     <%
-                                        for(int i=0;i<counter;i++)
+                                        for(int i=0;i<tweet.size();i++)
                                         {
-                                                db.startConnection();
-                                                String matchEmail = db.matchEmail((String)tweet.get(i));
+                                            String matchEmail = db.matchEmail((String)tweet.get(i));
                                     %>
                                         <div class="media">
 						<div class="media-body">
-                                                    <h4 class="media-heading"><img src="yumurta.png" height="32" width="46"></img> <b><%=matchEmail%></b></h4>
+                                                    <h4 class="media-heading"><img src="yumurta.png" height="32" width="46"></img><b>  <%=matchEmail%></b></h4>
 							<p><%=(String)tweet.get(i)%></p>
 						</div>
 
@@ -154,7 +160,7 @@
 						</div>
 						<div class="media-body">
 							<h4 class="media-heading">Adem Özyavas</h4>
-							<a href="#" class="btn btn-default btn-xs">
+							<a href="welcome.jsp" class="btn btn-default btn-xs">
 								+
 								<span class="glyphicon glyphicon-user"></span>
 								Follow
@@ -167,7 +173,7 @@
 						</div>
 						<div class="media-body">
                                                     <h4 class="media-heading">Taner Çevik</h4>
-							<a href="#" class="btn btn-default btn-xs">
+							<a href="welcome.jsp" class="btn btn-default btn-xs">
 								+
 								<span class="glyphicon glyphicon-user"></span>
 								Follow
@@ -180,7 +186,7 @@
 						</div>
 						<div class="media-body">
 							<h4 class="media-heading">Ali Güneş</h4>
-							<a href="#" class="btn btn-default btn-xs">
+							<a href="welcome.jsp" class="btn btn-default btn-xs">
 								+
 								<span class="glyphicon glyphicon-user"></span>
 								Follow
@@ -189,7 +195,7 @@
 					</div>
 				</div>
 				<div class="panel-footer">
-					<a href="www.google.it">
+					<a href="welcome.jsp">
 						<span class="glyphicon glyphicon-user"></span>
 						Find people you know
 					</a>
