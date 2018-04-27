@@ -6,7 +6,7 @@ public class DB
 {
    enum TIMETABLE
    {
-       ID,EMAIL,FIRSTNAME,LASTNAME;
+       ID,EMAIL,FIRSTNAME,LASTNAME,DATER;
    }
    enum TWEETS
    {
@@ -15,7 +15,6 @@ public class DB
    private Connection connection;
    private Statement statement;
    private ResultSet resultSet;
-   private int count=0;
    
    public DB()
    {
@@ -204,18 +203,39 @@ public class DB
         }
        return lastName;
    }
+    public String getDate(String tweet)
+   {
+       String date="";
+       try
+       {
+            startConnection();
+            String sqlStatement = String.format("select dater from tweets where id='%s';",id(tweet));
+            
+            statement = connection.createStatement();
+            
+            resultSet = statement.executeQuery(sqlStatement);
+            while(resultSet.next())
+            {
+                date = resultSet.getString(TIMETABLE.DATER.toString());
+            }
+            return date;
+       }
+       catch( Exception e ) {
+                  System.out.println("error9"+e.getLocalizedMessage());
+        }
+       return date;
+   }
 
    public void insertTweet(String email,String tweet)
    {   
        try
        {
            startConnection();
-           String sqlStatement= String.format("INSERT INTO tweets values ('%s','%s',default);",tweet,email);
+           String sqlStatement= String.format("INSERT INTO tweets values ('%s','%s',default,CURTIME());",tweet,email);
            
            statement = connection.createStatement();
            
            statement.executeUpdate(sqlStatement);
-           count++;
        }
        catch( Exception e )
        {  
@@ -223,6 +243,7 @@ public class DB
 
        }
    }
+  
    private void close()
     {
         try 

@@ -19,7 +19,6 @@
         db.startConnection();
         int counter = db.countTweet();
         ArrayList tweet = db.getTweet();
-        
     %>
    
    
@@ -105,7 +104,7 @@
 								<label class="control-label sr-only" for="inputSuccess5">Hidden label</label>
                                                                 
                                                                 <form method="post" action="SendTweet" >
-                                                                <input type="text" style="height:100px;" size="250" name="tweet" class="form-control" id="search2" aria-describedby="search">
+                                                                <input type="text" style="height:100px;" size="250" name="tweet" class="form-control" id="search2" aria-describedby="search" required>
                                                                 <br>
                                                                 <center><button class="btn btn-primary" type="submit" aria-label="Left Align"> 
                                                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>        Tweet 
@@ -121,11 +120,16 @@
                                         for(int i=0;i<tweet.size();i++)
                                         {
                                             String matchEmail = db.matchEmail((String)tweet.get(i));
+                                            String date = db.getDate((String)tweet.get(i));
+                                            if( date==null)
+                                            {
+                                                date="15:15";
+                                            }
                                     %>
                                         <div class="media">
 						<div class="media-body">
-                                                    <h4 class="media-heading"><img src="yumurta.png" height="32" width="46"></img><b>  <%=matchEmail%></b></h4>
-							<p><%=(String)tweet.get(i)%></p>
+                                                    <h4 class="media-heading"><img src="yumurta.png" height="32" width="46"></img><b> <%=matchEmail%> at <%=date%> </b></h4>
+                                                    <p><%=(String)tweet.get(i)%> </p>
 						</div>
 
 					</div>  

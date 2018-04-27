@@ -18,26 +18,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <body>
     <h1 style="text-align: center; font-size: 35px;color: white;padding-top: 5%;">Welcome new User</h1>
 <div class="main">
-    <div class="social-icons">
-        <div class="col_1_of_f span_1_of_f"><a href="#">
-           <ul class='facebook'>
-               <i class="fb"> </i>
-               <li>Connect with Facebook</li>
-               <div class='clear'> </div>
-           </ul>
-           </a>
-        </div>	
-        <div class="col_1_of_f span_1_of_f"><a href="#">
-           <ul class='twitter'>
-             <i class="tw"> </i>
-             <li>Connect with Twitter</li>
-             <div class='clear'> </div>
-           </ul>
-           </a>
-       </div>
-       <div class="clear"> </div>	
-    </div>
-    <h2>or signup with</h2>
+ 
+    <h1 style="color:white">Signup with</h1>
+    </center>
     <form method="post" action="saveNew">
             <div class="lable">
                 <div class="col_1_of_2 span_1_of_2">	
@@ -52,6 +35,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <input type="text" name="email" class="text" required value="your@email.com " onfocus="this.value = '';">
                 <input type="password" name="password" class="text" required value="Password " onfocus="this.value = '';">
             </div>
+            <p style="color:white">Select photo to upload: </p> <br>
+            <input type="file" name="uploadPhoto"/>
             <h3>By creating an account, you agree to our <span class="term"><a href="#">Terms & Conditions</a></span></h3>
             <div class="submit">
                 <input type="submit" onclick="myFunction()" value="Create account" >
