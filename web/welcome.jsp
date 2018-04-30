@@ -1,4 +1,5 @@
 
+<%@page import="personal.RandomPhoto"%>
 <%@page import="personal.Tweet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
@@ -18,6 +19,8 @@
         DB db = new DB();
         Tweet tw = db.tweet();
         ArrayList list = tw.getTweet();
+        RandomPhoto rp = new RandomPhoto();
+        String path = (String) session.getAttribute("path");
     %>
    
    
@@ -49,7 +52,7 @@
 		<div class="col-sm-3">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<a href="#"><img class="img-responsive" alt="" src="800500.jpg"></a>
+					<a href="#"><img class="img-responsive" alt="" src="images/img<%=path%>.jpg"></a>
 					<div class="row">
 						<div class="col-xs-3">
 							<h5>
@@ -122,7 +125,7 @@
                                     %>
                                         <div class="media">
 						<div class="media-body">
-                                                    <h4 class="media-heading"><img src="yumurta.png" height="32" width="46"></img><b>&thinsp;<%=matchEmail%></b></h4>
+                                                    <h4 class="media-heading"><img src="images/img<%=path%>.jpg" height="64" width="46"></img><b>&thinsp;<%=matchEmail%></b></h4>
                                                     <h4><p>&thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; <%= (String)list.get(i)%></p></h4>
                                                            
 						</div>

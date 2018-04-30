@@ -1,6 +1,7 @@
 package personal;
 
 import java.io.IOException;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,8 @@ public class Login1 extends HttpServlet
               if(data.checkUser(user))
               {
                 HttpSession session = request.getSession(true);
-                session.setAttribute("email", email); 
+                session.setAttribute("email", email);
+                session.setAttribute("path", Path());
                 url="/welcome.jsp";
               }
               else
@@ -31,5 +33,14 @@ public class Login1 extends HttpServlet
              
               RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
               rd.forward(request, response);       
+    }
+     public String Path()
+    {
+        Random rand = new Random();
+        int  n = rand.nextInt(5) + 1;
+        
+        String path=""+n;
+        System.out.println(path);
+        return path;
     }
 }
