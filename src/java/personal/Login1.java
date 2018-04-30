@@ -16,14 +16,12 @@ public class Login1 extends HttpServlet
               String email=request.getParameter("email");
               String password=request.getParameter("password");
               User user = new User(email,password);
-              String url ="";
+              String url = "";
               DB data = new DB();
-              
               if(data.checkUser(user))
               {
                 HttpSession session = request.getSession(true);
-                session.setAttribute("email", email);
-                session.setAttribute("nickName", data.getFirstName(user)+data.getLastName(user));
+                session.setAttribute("email", email); 
                 url="/welcome.jsp";
               }
               else

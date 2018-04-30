@@ -35,14 +35,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <input type="text" name="email" class="text" required value="your@email.com " onfocus="this.value = '';">
                 <input type="password" name="password" class="text" required value="Password " onfocus="this.value = '';">
             </div>
-            <p style="color:white">Select photo to upload: </p> <br>
-            <input type="file" name="uploadPhoto"/>
             <h3>By creating an account, you agree to our <span class="term"><a href="#">Terms & Conditions</a></span></h3>
             <div class="submit">
                 <input type="submit" onclick="myFunction()" value="Create account" >
             </div>
         </form>
-		
 </div>
 </body>
 </html>

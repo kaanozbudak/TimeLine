@@ -14,14 +14,13 @@ public class SendTweet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {       
             String tweet = request.getParameter("tweet");
+            System.out.println("check:"+tweet);
             HttpSession session = request.getSession(true);
             String email =(String)session.getAttribute("email");
             String url="/welcome.jsp";
             System.out.println(tweet);
             DB data = new DB();
             data.insertTweet(email, tweet);
-            
-              
             
             RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
             rd.forward(request, response);       

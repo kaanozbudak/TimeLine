@@ -1,11 +1,13 @@
 
+<%@page import="personal.Tweet"%>
 <%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title>TimeLine</title>
-	<meta charset="utf-8">
+	<meta charset="utf-8">     
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" href="welcomeStyle.css"></link>
         <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
@@ -13,12 +15,9 @@
     <%@page import="personal.DB"%>
     <%
         String email = (String) session.getAttribute("email");
-        String nickName = email;
-        String fullName = (String) session.getAttribute("nickName");
         DB db = new DB();
-        db.startConnection();
-        int counter = db.countTweet();
-        ArrayList tweet = db.getTweet();
+        Tweet tw = db.tweet();
+        ArrayList list = tw.getTweet();
     %>
    
    
@@ -27,18 +26,18 @@
 		<div class="navbar-collapse navbar-collapse-1 collapse" aria-expanded="true">
 			<ul class="nav navbar-nav">
 				<li class="active">
-                                    <a href="welcome.jsp"><span class="glyphicon glyphicon-home">  Home</span></a>
+                                    <a href="welcome.jsp"><span class="glyphicon glyphicon-home"></span>  Home</a>
 				</li>
 				<li>
-					<a href="welcome.jsp"><span class="glyphicon glyphicon-bell"></span> Notifications</a>
+                                    <a href="welcome.jsp"><span class="glyphicon glyphicon-bell"></span> Notifications</a>
 				</li>
 				<li>
-                                    <a href="welcome.jsp"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
+                                    <a href="welcome.jsp"><span class="glyphicon glyphicon-envelope"></span> Message</a>
 				</li>
                             &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp;
                                          &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp;
                                 <li>
-                                    <a href="welcome.jsp"><span class="glyphicon glyphicon-home"> TimeLine</span></a>
+                                    <a href="index.jsp"><span class="glyphicon glyphicon-home"> Log Out</span></a>
                                 </li>
 			</ul>
 		</div>
@@ -55,7 +54,7 @@
 						<div class="col-xs-3">
 							<h5>
 								<small>TWEETS</small>
-								<a href="welcome.jsp"><%=counter%></a>
+                                                                <a href="welcome.jsp"><%=tw.getCount()%></a>
 							</h5>
 						</div>
 						<div class="col-xs-4">
@@ -77,7 +76,7 @@
 			<div class="panel panel-default panel-custom">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-                                            <b>Name Surname:<%=fullName%></b>
+                                            <b><%=email%></b>
 					</h3>
                                     <br>
 				</div>
@@ -116,20 +115,16 @@
 				</div>
 				<div class="panel-body">
 					
-                                    <%
-                                        for(int i=0;i<tweet.size();i++)
-                                        {
-                                            String matchEmail = db.matchEmail((String)tweet.get(i));
-                                            String date = db.getDate((String)tweet.get(i));
-                                            if( date==null)
-                                            {
-                                                date="15:15";
-                                            }
+                                    <%  
+                                        for(int i=0;i<tw.getCount();i++)
+                                        {   
+                                            String matchEmail =  db.matchEmail((String)list.get(i));
                                     %>
                                         <div class="media">
 						<div class="media-body">
-                                                    <h4 class="media-heading"><img src="yumurta.png" height="32" width="46"></img><b> <%=matchEmail%> at <%=date%> </b></h4>
-                                                    <p><%=(String)tweet.get(i)%> </p>
+                                                    <h4 class="media-heading"><img src="yumurta.png" height="32" width="46"></img><b>&thinsp;<%=matchEmail%></b></h4>
+                                                    <h4><p>&thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; <%= (String)list.get(i)%></p></h4>
+                                                           
 						</div>
 
 					</div>  

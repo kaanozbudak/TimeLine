@@ -6,29 +6,32 @@ public class DB
 {
    enum TIMETABLE
    {
-       ID,EMAIL,FIRSTNAME,LASTNAME,DATER;
+       ID,EMAIL,FIRSTNAME,LASTNAME;
    }
    enum TWEETS
    {
-       TWEET,EMAIL;
+       TWEET,EMAIL,DATER,ID,COUNT;
    }
    private Connection connection;
    private Statement statement;
    private ResultSet resultSet;
-   
    public DB()
    {
    }
    public void startConnection()
    {    
        String javaDriver = "com.mysql.jdbc.Driver";
-       String javaUrl = "jdbc:mysql://localhost/timelinedb";
+       String jdbcURLRemoteHost = "jdbc:mysql://localhost:3306/timelinedb?useUnicode=true&characterEncoding=UTF-8";
        String root = "root";
        String myPassword="rosekaan1";
        try
        {
            Class.forName(javaDriver);
-           connection = DriverManager.getConnection(javaUrl,root,myPassword);
+           // for local
+           // connection = DriverManager.getConnection(javaUrl,root,myPassword);
+           // for remote
+           connection = DriverManager.getConnection(jdbcURLRemoteHost,root,myPassword);
+
        }
        catch( Exception e )
        {
@@ -72,160 +75,6 @@ public class DB
         }
        return false;
    }
-   public int countTweet()
-   {
-       int count=0;
-       try
-       {
-        startConnection();
-        String sqlStatement = "SELECT count(email) FROM tweets;";
-        statement = connection.createStatement();
-        resultSet = statement.executeQuery(sqlStatement);
-        while(resultSet.next())
-        {
-            count = resultSet.getInt(1);
-        }
-           return count;
-       }
-       catch( Exception e )
-       {
-            System.out.println("error2"+e.getLocalizedMessage());
-       }
-      
-       return count;
-   }
-   public String id(String tweet)
-   {
-       int id=0;
-       try
-       {
-           String sqlStatement =String.format("select id from tweets where tweet='%s'",tweet);
-           statement = connection.createStatement();
-           resultSet = statement.executeQuery(sqlStatement);
-           while(resultSet.next())
-            {
-                id = resultSet.getInt(1);
-            }
-           return Integer.toString(id);
-       }
-       catch( Exception e )
-       {
-           System.out.println("error2"+e.getLocalizedMessage());
-       }
-      
-       return Integer.toString(id);
-   }
-    public String matchEmail(String tweet)
-   {
-       String match="";
-       try
-       {
-           String sqlStatement = String.format("select email from tweets where id='%s'",id(tweet));
-           statement = connection.createStatement();
-           resultSet = statement.executeQuery(sqlStatement);
-           while(resultSet.next())
-           {
-               match = resultSet.getString(TWEETS.EMAIL.toString());
-           }
-           return match;
-       }
-       catch( Exception e )
-       {
-           System.out.println("error3"+e.getLocalizedMessage());
-       }
-      
-       System.out.println("eslesen"+match);
-       return match;
-   }
-   public ArrayList getTweet()
-   {   
-      ArrayList<String> list = new ArrayList<String>();
-       String tweet="";
-       try
-       {    
-           String sqlStatement = String.format("select tweet from tweets order by id desc");
-           statement = connection.createStatement();
-           resultSet = statement.executeQuery(sqlStatement);
-           while(resultSet.next())
-           {
-               tweet = resultSet.getString(TWEETS.TWEET.toString());
-               list.add(tweet);
-           }
-           
-           return list;
-       }
-       catch( Exception e )
-       {
-           System.out.println("error4"+e.getLocalizedMessage());
-       }
-       return list;
-   }
-   public String getFirstName(User user)
-   {   
-       String firstName="";
-       try
-       {
-           startConnection();
-            String sqlStatement = String.format("Select firstName from timetable where email='%s';",user.getEmail());
-            
-            statement = connection.createStatement();
-            
-            resultSet = statement.executeQuery(sqlStatement);
-            while(resultSet.next())
-            {
-                firstName = resultSet.getString(TIMETABLE.FIRSTNAME.toString());
-            }
-       }
-       catch( Exception e ) {
-                  System.out.println("error7"+e.getLocalizedMessage());
-            }
-        
-       return firstName;
-   }
-   public String getLastName(User user)
-   {
-        String lastName="";
-       try
-       {
-           startConnection();
-            String sqlStatement = String.format("Select lastName from timetable where email='%s';",user.getEmail());
-            
-            statement = connection.createStatement();
-            
-            resultSet = statement.executeQuery(sqlStatement);
-            while(resultSet.next())
-            {
-                lastName = resultSet.getString(TIMETABLE.LASTNAME.toString());
-            }
-       }
-       catch( Exception e ) {
-                  System.out.println("error7"+e.getLocalizedMessage());
-        }
-       return lastName;
-   }
-    public String getDate(String tweet)
-   {
-       String date="";
-       try
-       {
-            startConnection();
-            String sqlStatement = String.format("select dater from tweets where id='%s';",id(tweet));
-            
-            statement = connection.createStatement();
-            
-            resultSet = statement.executeQuery(sqlStatement);
-            while(resultSet.next())
-            {
-                date = resultSet.getString(TIMETABLE.DATER.toString());
-            }
-            return date;
-       }
-       catch( Exception e ) {
-                  System.out.println("error9"+e.getLocalizedMessage());
-        }
-       return date;
-   }
-
    public void insertTweet(String email,String tweet)
    {   
        try
@@ -243,7 +92,61 @@ public class DB
 
        }
    }
-  
+   public Tweet tweet()
+   {
+       Tweet tw = new Tweet();
+       ArrayList<String> list = new ArrayList<String>();
+       try
+       {    
+           startConnection();
+           String sqlStatement =String.format("select *, (SELECT count(email) FROM tweets) as Count from tweets order by id desc;;");
+           statement = connection.createStatement();
+           resultSet = statement.executeQuery(sqlStatement);
+         
+            while(resultSet.next())
+            {
+                Integer id = resultSet.getInt(TWEETS.ID.toString());
+                String tweet = resultSet.getString(TWEETS.TWEET.toString());
+                String email = resultSet.getString(TWEETS.EMAIL.toString());
+                String dater = resultSet.getString(TWEETS.DATER.toString());
+                Integer count = resultSet.getInt(TWEETS.COUNT.toString());
+                list.add(tweet);
+                tw = new Tweet(list,id,email,dater,count);
+            }
+           return tw;
+       }
+       catch( Exception e )
+       {
+           System.out.println("error2"+e.getLocalizedMessage());
+       }
+       return tw;
+   }
+   public String matchEmail(String tweet)
+    {
+       String match="";
+       String date="";
+       String result="";
+       try
+       {
+           String sqlStatement = String.format("select email,dater from tweets where tweet='%s'",tweet);
+           statement = connection.createStatement();
+           resultSet = statement.executeQuery(sqlStatement);
+           while(resultSet.next())
+           {
+               match = resultSet.getString(TWEETS.EMAIL.toString());
+               date = resultSet.getString(TWEETS.DATER.toString());
+           }
+           result=match+" at "+date;
+           return result;
+       }
+       catch( Exception e )
+       {
+           System.out.println("error3"+e.getLocalizedMessage());
+       }
+      
+       System.out.println("eslesen"+match);
+       return result;
+   }
    private void close()
     {
         try 
