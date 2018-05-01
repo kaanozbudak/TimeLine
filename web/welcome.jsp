@@ -1,5 +1,4 @@
 
-<%@page import="personal.RandomPhoto"%>
 <%@page import="personal.Tweet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
@@ -19,8 +18,9 @@
         DB db = new DB();
         Tweet tw = db.tweet();
         ArrayList list = tw.getTweet();
-        RandomPhoto rp = new RandomPhoto();
-        String path = (String) session.getAttribute("path");
+        ArrayList list2 = tw.getMatch();
+        ArrayList list3 = tw.getDate();
+        String path1 = db.getPhoto(email);
     %>
    
    
@@ -52,7 +52,7 @@
 		<div class="col-sm-3">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<a href="#"><img class="img-responsive" alt="" src="images/img<%=path%>.jpg"></a>
+					<a href="#"><img class="img-responsive" alt="" src="<%=path1%>.jpg"></a>
 					<div class="row">
 						<div class="col-xs-3">
 							<h5>
@@ -121,11 +121,11 @@
                                     <%  
                                         for(int i=0;i<tw.getCount();i++)
                                         {   
-                                            String matchEmail =  db.matchEmail((String)list.get(i));
+                                            String path = db.getPhoto((String)list2.get(i));
                                     %>
                                         <div class="media">
 						<div class="media-body">
-                                                    <h4 class="media-heading"><img src="images/img<%=path%>.jpg" height="64" width="46"></img><b>&thinsp;<%=matchEmail%></b></h4>
+                                                    <h4 class="media-heading"><img src="<%=path%>.jpg" height="64" width="46"></img><b>&thinsp;&thinsp;  <%=(String)list2.get(i)%>  at  <%=list3.get(i)%></b></h4>
                                                     <h4><p>&thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; &thinsp; <%= (String)list.get(i)%></p></h4>
                                                            
 						</div>

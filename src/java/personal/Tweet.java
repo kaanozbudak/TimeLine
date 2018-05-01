@@ -5,10 +5,10 @@ public class Tweet
 {
    ArrayList<String> tweet;
    int id;
-   String matchEmail;
-   String date;
+   ArrayList<String> matchEmail;
+    ArrayList<String> date;
    int count;
-   public Tweet(ArrayList tweet,int id,String matchEmail,String date,int count)
+   public Tweet(ArrayList tweet,int id,ArrayList<String> matchEmail, ArrayList<String> date,int count)
    {
        this.tweet=tweet;
        this.id=id;
@@ -28,7 +28,7 @@ public class Tweet
    {
        return count;
    }
-   public String getDate()
+   public  ArrayList<String> getDate()
    {
        return date;
    }
@@ -36,7 +36,7 @@ public class Tweet
    {
        return id;
    }
-   public String getMatch()
+   public ArrayList<String> getMatch()
    {
        return matchEmail;
    }
@@ -44,7 +44,7 @@ public class Tweet
    {
        this.tweet = tweet;
    }
-   public void setDate(String date)
+   public void setDate(ArrayList<String> date)
    {
        this.date=date;
    }
@@ -52,7 +52,7 @@ public class Tweet
    {
        this.id = id;
    }
-   public void setEmail(String matchEmail)
+   public void setEmail(ArrayList<String> matchEmail)
    {
        this.matchEmail = matchEmail;
    }

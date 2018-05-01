@@ -6,7 +6,7 @@ public class DB
 {
    enum TIMETABLE
    {
-       ID,EMAIL,FIRSTNAME,LASTNAME;
+       ID,EMAIL,FIRSTNAME,LASTNAME,PATH;
    }
    enum TWEETS
    {
@@ -43,8 +43,8 @@ public class DB
         try
         {
            startConnection();
-           String sqlStatement = String.format("INSERT INTO timetable values (default,'%s','%s','%s','%s');"
-                   ,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword());
+           String sqlStatement = String.format("INSERT INTO timetable values (default,'%s','%s','%s','%s','%s');"
+                   ,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),user.getPath1());
            statement = connection.createStatement();
            statement.executeUpdate(sqlStatement);
         }
@@ -52,7 +52,11 @@ public class DB
         {
            System.out.println("error5"+e.getLocalizedMessage());
            
-        } 
+        }
+        finally
+        {
+            close();
+        }
     }
     public boolean checkUser(User user)
    {
@@ -69,12 +73,13 @@ public class DB
         System.out.println("error6"+e.getLocalizedMessage());
 
        }
-        finally
-        {
-            close();
-        }
+       finally
+       {
+           close();
+       }
        return false;
    }
+   
    public void insertTweet(String email,String tweet)
    {   
        try
@@ -96,10 +101,13 @@ public class DB
    {
        Tweet tw = new Tweet();
        ArrayList<String> list = new ArrayList<String>();
+       ArrayList<String> list2= new ArrayList<String>();
+       ArrayList<String> list3= new ArrayList<String>();
+       
        try
        {    
            startConnection();
-           String sqlStatement =String.format("select *, (SELECT count(email) FROM tweets) as Count from tweets order by id desc;;");
+           String sqlStatement =String.format("select *, (SELECT count(email) FROM tweets) as Count from tweets order by id desc;");
            statement = connection.createStatement();
            resultSet = statement.executeQuery(sqlStatement);
          
@@ -111,7 +119,9 @@ public class DB
                 String dater = resultSet.getString(TWEETS.DATER.toString());
                 Integer count = resultSet.getInt(TWEETS.COUNT.toString());
                 list.add(tweet);
-                tw = new Tweet(list,id,email,dater,count);
+                list2.add(email);
+                list3.add(dater);
+                tw = new Tweet(list,id,list2,list3,count);
             }
            return tw;
        }
@@ -121,31 +131,25 @@ public class DB
        }
        return tw;
    }
-   public String matchEmail(String tweet)
-    {
-       String match="";
-       String date="";
-       String result="";
+   public String getPhoto(String email)
+   {
+       String path="";
        try
        {
-           String sqlStatement = String.format("select email,dater from tweets where tweet='%s'",tweet);
-           statement = connection.createStatement();
-           resultSet = statement.executeQuery(sqlStatement);
-           while(resultSet.next())
-           {
-               match = resultSet.getString(TWEETS.EMAIL.toString());
-               date = resultSet.getString(TWEETS.DATER.toString());
-           }
-           result=match+" at "+date;
-           return result;
+            startConnection();
+            String sqlStatement = String.format("Select path from timetable where email='%s';",email);
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sqlStatement);
+            while(resultSet.next())
+            {
+                path = resultSet.getString(TIMETABLE.PATH.toString());
+            }
+            return path;
        }
        catch( Exception e )
        {
-           System.out.println("error3"+e.getLocalizedMessage());
        }
-      
-       System.out.println("eslesen"+match);
-       return result;
+       return path;
    }
    private void close()
     {

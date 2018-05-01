@@ -13,6 +13,8 @@ public class SendTweet extends HttpServlet
 {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {       
+            request.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html; charset=utf-8");
             String tweet = request.getParameter("tweet");
             System.out.println("check:"+tweet);
             HttpSession session = request.getSession(true);
