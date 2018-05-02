@@ -96,6 +96,10 @@ public class DB
             System.out.println("error8"+e.getLocalizedMessage());
 
        }
+       finally
+       {
+           close();
+       }
    }
    public Tweet tweet()
    {
@@ -129,6 +133,10 @@ public class DB
        {
            System.out.println("error2"+e.getLocalizedMessage());
        }
+       finally
+       {
+           close();
+       }
        return tw;
    }
    public String getPhoto(String email)
@@ -148,6 +156,10 @@ public class DB
        }
        catch( Exception e )
        {
+       }
+       finally
+       {
+           close();
        }
        return path;
    }

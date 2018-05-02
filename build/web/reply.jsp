@@ -13,14 +13,14 @@
    <link rel="stylesheet" href="mainStyle.css">
 </head>
 <body>
-    <h1> Welcome to Our App </h1>
+    <h1 style="font-size: 75px"> Welcome </h1>
     <%@ page import="personal.User" %>
 
     <%
       User user = (User) request.getAttribute("user");
     %>
-
-    <p> Welcome <%= user.getFirstName()%> to our application.
+    <p style="font-size: 55px"> Successful !</p>
+    <p style="font-size: 45px"> Welcome (<%= user.getFirstName()%><%=user.getLastName()%>)//(<%=user.getEmail()%>) to our application.
     Your password is ********** </p>
     <a class="loginLink11" href="index.jsp" style="color: white">Sign up now !</a>
 </body>
