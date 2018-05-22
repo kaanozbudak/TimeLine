@@ -1,7 +1,6 @@
 package personal;
 
 import java.io.IOException;
-import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +27,7 @@ public class Login1 extends HttpServlet
               }
               else
               {
+                System.out.println("Wrong password or email !");
                 url="/newRegister.jsp";
               }
              

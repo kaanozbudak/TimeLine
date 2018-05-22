@@ -15,13 +15,16 @@ public class SendTweet extends HttpServlet
     {       
             request.setCharacterEncoding("UTF-8");
             response.setContentType("text/html; charset=utf-8");
+            //get tweet which send from userS
             String tweet = request.getParameter("tweet");
             System.out.println("check:"+tweet);
             HttpSession session = request.getSession(true);
             String email =(String)session.getAttribute("email");
+            // refresh page
             String url="/welcome.jsp";
-            System.out.println(tweet);
+            
             DB data = new DB();
+            //insert it using DB class
             data.insertTweet(email, tweet);
             
             RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
